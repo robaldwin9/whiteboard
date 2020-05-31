@@ -1,0 +1,29 @@
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+ 
+ <appenders>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+
+       <RollingFile name="fileLogger" fileName="logs/app-info.log" filePattern="logs/app-info-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+        
+</appenders>
+ 
+ <Loggers>
+  <Root level="debug" additivity="false">
+    <appender-ref ref="console"></appender-ref>
+    <appender-ref ref="fileLogger"></appender-ref>
+  </Root>
+</Loggers>
+ 
+</log4j:configuration>
